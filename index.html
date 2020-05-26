@@ -1,0 +1,317 @@
+<html>
+    <style>
+        *{font-family: "Bahnschrift";}
+
+        /*Custom Scrollbar*/ 
+        /* width */
+        ::-webkit-scrollbar {
+        width: 20px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgb(118, 113, 113); 
+        border-radius: 10px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: rgb(118, 113, 113); 
+        border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: black; 
+        }
+
+        .main {
+            position: relative; 
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main::before {    
+            content: "";
+            background-size: contain;
+            background-position: center;
+            background-image: url("resources/background_image.jpg");
+            background-size: cover;
+            position: absolute;
+            background-attachment: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            opacity: 0.7;
+            width: 100%;
+            height: 100%; 
+        }
+
+        .rectangle {
+            height: 100%;
+            width: 55%;
+            background-color: rgb(253, 238, 227, 0.9); /*last value: opacity*/
+            right: 0;
+            position: absolute;
+            overflow: auto;
+            
+        }
+
+        #title {
+            font-family: "Aharoni" !important;
+            position: relative;
+            color: #2d4b70;  
+            font-size: 3.5rem;
+            line-height: 0.9;
+            text-align: center;
+            margin: 50px auto 20px;
+            width: 95%;
+        }
+
+        #description{
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+            color: rgb(118, 113, 113);
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .questions{
+            height: 80%;
+            width: 60%;
+            opacity: 0.9;
+            right: 0;
+            position: relative;
+            margin: 0 auto;
+            font-size: 1.2rem
+        }
+
+        input, select{
+            border-radius: 4px;
+        }
+
+        #name, #email, #number, #dropdown,  #gender{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+        }
+
+        #general{
+            font-size: 1.5rem !important;
+        }
+
+        input[type=radio] {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /*.radio-label{
+            display: inline-block;
+        }*/
+        .rating{
+            position: relative;
+            display: flex;
+            flex-direction: row-reverse;
+            margin-top: 10px;
+            border: 1px solid  black;
+            box-sizing: border-box;
+            background: #2d4b70;
+            
+        }
+        .rating input{
+            display: none;
+        }
+        .rating label{
+            display: block;
+            cursor: pointer;
+            width: 50px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.5s;
+            background: #fff;
+            color: #000;
+            font-size: 20px;
+            border-right: 1px solid #000;
+        }
+
+        .rating input[type="radio"]:checked ~ label{
+            background: transparent;
+            color: white;
+        }
+
+        #comments{
+            height:100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #submit{
+            background-color: gray; 
+            border: none;
+            color: white;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            display: inline-block;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        #submit:hover {
+            background-color: #2d4b70;
+            color: white;
+        }
+
+    </style>
+
+<head>
+    <title>Survey Form about remote learning</title>
+</head>
+
+<div id="main" class="main">
+    <div class="rectangle">
+        <h1 id="title">Remote Learning Survey</h1>
+        <h2 id="description">Remote learning for students during the coronavirus outbreak </h2><br><br><br>
+        <div class="questions">
+            <form action="/action_page.php" id="survey-form">
+
+                <div id="general">
+                    <label for="fname" id="name-label">First name</label><br>
+                    <input type="text" id="name" name="fname" placeholder="Enter your name" required><br><br>
+                    <label for="email-label" id="email-label">Email</label><br>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><br><br>
+                    
+                    <label for="number" id="number-label">Age<br>
+                    <input type="number" id="number" name="age" min="15" max="120" placeholder="age"><br><br>
+
+                    <label for="gender">Gender</label><br>
+                    <select id="gender">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="tau">Female</option>
+                        <option value="huji">Male</option>
+                        <option value="biu">Other</option>
+                    </select> <br><br>
+
+                    <label for="dropdown">University</label><br>
+                    <select id="dropdown">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="tau">Tel-Aviv University</option>
+                        <option value="huji">The Hebrew University</option>
+                        <option value="biu">Bar-Ilan University</option>
+                        <option value="haifa">Haifa University</option>
+                        <option value="bgu">Ben Gurion University</option>
+                        <option value="technion">Technion</option>
+                    </select> <br><br>
+                </div>
+
+                <p>In which of the following situation were you exposed to remote learning:</p>
+                <input type="checkbox" id="a1" value="university">
+                <label for="a1">University online courses</label><br>
+                <input type="checkbox" id="a2" value="programs">
+                <label for="a2">Professional courses</label><br>
+                <input type="checkbox" id="a3" value="extra-curricular">
+                <label for="a3">Extra-curricular studies</label><br>
+                <input type="checkbox" id="a4" value="other">
+                <label for="a3">other</label><br><br>
+
+                <h3><b><u>Survey questions</u></b>:</h3>
+                <p>During the coronavirus outbreak many were forced to work and study from home. Please answer the following questions based
+                    on your experience with remote learning.<br><br> Indicate on a scale of 1 to 10 how strongly do you agree with the following statements, with 1 being 
+                    "does not agree at all" and 10 being "absolutely agree".</p>
+                <div><ol>
+                    <li value="1" id="q" class="text-center">At this time, I am confident in my personal health and safety.</li><br>
+                    <div class="rating" style="margin-right: 20% !important;">
+                        <input type="radio" name="rating1" id="1_rate10"><label class="radio-label" for="1_rate10">10</label>
+                        <input type="radio" name="rating1" id="1_rate9"><label class="radio-label" for="1_rate9">9</label>
+                        <input type="radio" name="rating1" id="1_rate8"><label class="radio-label" for="1_rate8">8</label>
+                        <input type="radio" name="rating1" id="1_rate7"><label class="radio-label" for="1_rate7">7</label>
+                        <input type="radio" name="rating1" id="1_rate6"><label class="radio-label" for="1_rate6">6</label>
+                        <input type="radio" name="rating1" id="1_rate5"><label class="radio-label" for="1_rate5">5</label>
+                        <input type="radio" name="rating1" id="1_rate4"><label class="radio-label" for="1_rate4">4</label>
+                        <input type="radio" name="rating1" id="1_rate3"><label class="radio-label" for="1_rate3">3</label>
+                        <input type="radio" name="rating1" id="1_rate2"><label class="radio-label" for="1_rate2">2</label>
+                        <input type="radio" name="rating1" id="1_rate1"><label class="radio-label" for="1_rate1">1</label>
+                    </div><br>
+                    
+                    <li id="q" >I have the tools and resources needed to be a successful learner in a virtual environment.</li><br>
+                    <div class="rating" style="margin-right: 20% !important;">
+                        <input type="radio" name="rating2" id="2_rate10"><label class="radio-label" for="2_rate10">10</label>
+                        <input type="radio" name="rating2" id="2_rate9"><label class="radio-label" for="2_rate9">9</label>
+                        <input type="radio" name="rating2" id="2_rate8"><label class="radio-label" for="2_rate8">8</label>
+                        <input type="radio" name="rating2" id="2_rate7"><label class="radio-label" for="2_rate7">7</label>
+                        <input type="radio" name="rating2" id="2_rate6"><label class="radio-label" for="2_rate6">6</label>
+                        <input type="radio" name="rating2" id="2_rate5"><label class="radio-label" for="2_rate5">5</label>
+                        <input type="radio" name="rating2" id="2_rate4"><label class="radio-label" for="2_rate4">4</label>
+                        <input type="radio" name="rating2" id="2_rate3"><label class="radio-label" for="2_rate3">3</label>
+                        <input type="radio" name="rating2" id="2_rate2"><label class="radio-label" for="2_rate2">2</label>
+                        <input type="radio" name="rating2" id="2_rate1"><label class="radio-label" for="2_rate1">1</label> 
+                    </div><br>
+            
+                    <li id="q">I understand what is expected of me as a remote student.</li><br>
+                    <div class="rating" style="margin-right: 20% !important;">
+                        <input type="radio" name="rating3" id="3_rate10"><label class="radio-label" for="3_rate10">10</label>
+                        <input type="radio" name="rating3" id="3_rate9"><label class="radio-label" for="3_rate9">9</label>
+                        <input type="radio" name="rating3" id="3_rate8"><label class="radio-label" for="3_rate8">8</label>                        
+                        <input type="radio" name="rating3" id="3_rate7"><label class="radio-label" for="3_rate7">7</label>
+                        <input type="radio" name="rating3" id="3_rate6"><label class="radio-label" for="3_rate6">6</label>
+                        <input type="radio" name="rating3" id="3_rate5"><label class="radio-label" for="3_rate5">5</label>
+                        <input type="radio" name="rating3" id="3_rate4"><label class="radio-label" for="3_rate4">4</label>
+                        <input type="radio" name="rating3" id="3_rate3"><label class="radio-label" for="3_rate3">3</label>
+                        <input type="radio" name="rating3" id="3_rate2"><label class="radio-label" for="3_rate2">2</label>
+                        <input type="radio" name="rating3" id="3_rate1"><label class="radio-label" for="3_rate1">1</label>
+                    </div><br>
+
+                    <li id="q" >I feel connected to my fellow students.</li><br>
+                    <div class="rating" style="margin-right: 20% !important;">
+                        <input type="radio" name="rating4" id="4_rate10"><label class="radio-label" for="4_rate10">10</label>
+                        <input type="radio" name="rating4" id="4_rate9"><label class="radio-label" for="4_rate9">9</label>
+                        <input type="radio" name="rating4" id="4_rate8"><label class="radio-label" for="4_rate8">8</label>
+                        <input type="radio" name="rating4" id="4_rate7"><label class="radio-label" for="4_rate7">7</label>
+                        <input type="radio" name="rating4" id="4_rate6"><label class="radio-label" for="4_rate6">6</label>
+                        <input type="radio" name="rating4" id="4_rate5"><label class="radio-label" for="4_rate5">5</label>
+                        <input type="radio" name="rating4" id="4_rate4"><label class="radio-label" for="4_rate4">4</label>
+                        <input type="radio" name="rating4" id="4_rate3"><label class="radio-label" for="4_rate3">3</label>
+                        <input type="radio" name="rating4" id="4_rate2"><label class="radio-label" for="4_rate2">2</label>
+                        <input type="radio" name="rating4" id="4_rate1"><label class="radio-label" for="4_rate1">1</label>
+                    </div><br>
+
+                    <li id="q">I feel connected to my instructors.</li><br>
+                        <div class="rating" style="margin-right: 20% !important;">
+                            <input type="radio" name="rating5" id="5_rate10"><label class="radio-label" for="5_rate10">10</label>
+                            <input type="radio" name="rating5" id="5_rate9"><label class="radio-label" for="5_rate9">9</label>
+                            <input type="radio" name="rating5" id="5_rate8"><label class="radio-label" for="5_rate8">8</label>
+                            <input type="radio" name="rating5" id="5_rate7"><label class="radio-label" for="5_rate7">7</label>
+                            <input type="radio" name="rating5" id="5_rate6"><label class="radio-label" for="5_rate6">6</label>
+                            <input type="radio" name="rating5" id="5_rate5"><label class="radio-label" for="5_rate5">5</label>
+                            <input type="radio" name="rating5" id="5_rate4"><label class="radio-label" for="5_rate4">4</label>
+                            <input type="radio" name="rating5" id="5_rate3"><label class="radio-label" for="5_rate3">3</label>
+                            <input type="radio" name="rating5" id="5_rate2"><label class="radio-label" for="5_rate2">2</label>
+                            <input type="radio" name="rating5" id="5_rate1"><label class="radio-label" for="5_rate1">1</label>
+                    </div><br>
+
+                    <li id="q">How can we improve your remote learning experience?</li></ol>
+                    <input type="text" placeholder="Enter your comments here..." id="comments">
+                    
+                    
+                </div>
+                <br><br>
+                <input type="submit" id="submit">
+            </form> 
+        </div>
+
+    </div>
+    
+
+</div>
+
+</html>
